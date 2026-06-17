@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daniel Andreis — Currículo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0F172A;
+      --surface:   #1E293B;
+      --border:    #334155;
+      --accent:    #38BDF8;
+      --accent-dim:#0EA5E9;
+      --text:      #F1F5F9;
+      --muted:     #94A3B8;
+      --subtle:    #64748B;
+      --radius:    10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.05;
+      color: var(--text);
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 16px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+    }
+
+    .hero-contacts {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .contact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      font-size: .85rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+
+    .contact-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .contact-pill svg { flex-shrink: 0; }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 48px 0 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    /* ── SUMMARY ── */
+    .summary-text {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    /* ── OBJECTIVE CHIPS ── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 8px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: .9rem;
+      color: var(--text);
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 36px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -33px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .job-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .job-period {
+      font-size: .8rem;
+      color: var(--subtle);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .job-company {
+      font-size: .9rem;
+      color: var(--accent-dim);
+      margin-bottom: 8px;
+    }
+
+    .job-desc {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── SKILLS / TAGS ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .tag {
+      padding: 6px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .tag.highlight {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(56, 189, 248, .08);
+    }
+
+    /* ── EDUCATION / COURSE CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 12px;
+    }
+
+    .card:last-child { margin-bottom: 0; }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .card-sub {
+      font-size: .875rem;
+      color: var(--muted);
+    }
+
+    .card-badge {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 10px;
+      background: rgba(56,189,248,.12);
+      border: 1px solid var(--accent);
+      border-radius: 99px;
+      font-size: .75rem;
+      color: var(--accent);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: .8rem;
+      color: var(--subtle);
+      text-align: center;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .hero { padding: 48px 0 40px; }
+      .job-header { flex-direction: column; gap: 2px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+<main class="page">
+
+  <!-- HERO -->
+  <header class="hero">
+    <p class="hero-label">Atendimento · Suporte · Operações Digitais</p>
+    <h1>Daniel<br><span>Andreis</span></h1>
+    <p class="hero-sub">
+      Profissional com experiência em atendimento ao cliente e vendas, com facilidade natural
+      para ferramentas digitais e ambientes remotos. Inglês avançado, perfil proativo e
+      disposição real para aprender qualquer sistema que a empresa usar.
+    </p>
+    <nav class="hero-contacts" aria-label="Contatos">
+      <a class="contact-pill" href="tel:+5547988415917">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 13.6 19.79 19.79 0 0 1 1 5.13 2 2 0 0 1 2.96 3h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.71 2.81a2 2 0 0 1-.45 2.11L7.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.58 2.81.71A2 2 0 0 1 21 18l.92-1.08z"/></svg>
+        (47) 98841-5917
+      </a>
+      <a class="contact-pill" href="mailto:daniel.andreis009@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        daniel.andreis009@gmail.com
+      </a>
+      <span class="contact-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Joinville — SC
+      </span>
+    </nav>
+  </header>
+
+  <!-- RESUMO -->
+  <section class="section" aria-labelledby="resumo-label">
+    <p class="section-label" id="resumo-label">Sobre mim</p>
+    <p class="summary-text">
+      Mais de 6 anos atendendo clientes e resolvendo problemas no dia a dia do varejo — o que me ensinou
+      a comunicar com clareza, manter a calma sob pressão e encontrar soluções rápidas. Tenho facilidade
+      com ferramentas digitais e me adapto bem a novos sistemas. Inglês avançado me permite atender
+      empresas e clientes internacionais sem fricção. Atualmente em formação como desenvolvedor Full Stack,
+      o que me dá uma visão técnica que agrega diretamente em funções de suporte e atendimento digital.
+    </p>
+  </section>
+
+  <!-- OBJETIVO -->
+  <section class="section" aria-labelledby="obj-label">
+    <p class="section-label" id="obj-label">Objetivo</p>
+    <div class="chips">
+      <div class="chip">Atendimento ao Cliente Digital</div>
+      <div class="chip">Suporte ao Cliente (Chat / E-mail)</div>
+      <div class="chip">Vendas Internas / Inside Sales</div>
+      <div class="chip">Backoffice Remoto</div>
+      <div class="chip">Customer Success</div>
+      <div class="chip">Home Office</div>
+    </div>
+  </section>
+
+  <!-- EXPERIÊNCIA -->
+  <section class="section" aria-labelledby="exp-label">
+    <p class="section-label" id="exp-label">Experiência Profissional</p>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="job-header">
+          <span class="job-title">Atendimento &amp; Vendas</span>
+          <span class="job-period">Jan 2025 – Jan 2026</span>
+        </div>
+        <p class="job-company">Ojoy</p>
+        <p class="job-desc">Atendimento direto ao cliente com foco em resolução de problemas e experiência positiva. Operação de sistemas de caixa e controle de estoque, mantendo registros organizados e precisos. Alcance consistente de metas mensais.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="job-header">
+          <span class="job-title">Atendimento &amp; Suporte em Telefonia</span>
+          <span class="job-period">Mar 2023 – Nov 2023</span>
+        </div>
+        <p class="job-company">Oficina do Celular Acessórios e Serviços LTDA</p>
+        <p class="job-desc">Atendimento a clientes com dúvidas técnicas sobre dispositivos móveis, acessórios e serviços. Operação de sistemas internos de PDV e gestão do fluxo de caixa. Ambiente que exigiu comunicação clara e resolução ágil de problemas.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="job-header">
+          <span class="job-title">Vendas Internas · Telefonia</span>
+          <span class="job-period">Jul 2021 – Nov 2021</span>
+        </div>
+        <p class="job-company">Tech Store Comércio e Serviços de Telefonia LTDA</p>
+        <p class="job-desc">Vendas internas de produtos de tecnologia, com atendimento consultivo e uso de sistemas digitais de ponto de venda.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="job-header">
+          <span class="job-title">Atendimento ao Cliente &amp; Vendas</span>
+          <span class="job-period">Nov 2018 – Abr 2020</span>
+        </div>
+        <p class="job-company">Paquetá Calçados LTDA</p>
+        <p class="job-desc">Atendimento ao cliente em rede de varejo de grande porte, com alto volume diário de interações. Desenvolveu escuta ativa, empatia e capacidade de entender a necessidade do cliente para oferecer a solução certa.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HABILIDADES -->
+  <section class="section" aria-labelledby="skills-label">
+    <p class="section-label" id="skills-label">Habilidades</p>
+    <div class="tags">
+      <span class="tag highlight">Inglês Avançado</span>
+      <span class="tag highlight">Desenvolvimento Full Stack (em formação)</span>
+      <span class="tag highlight">Rápida adaptação a novos sistemas</span>
+      <span class="tag">Atendimento ao Cliente</span>
+      <span class="tag">Suporte via Chat &amp; E-mail</span>
+      <span class="tag">Vendas Internas</span>
+      <span class="tag">Inside Sales</span>
+      <span class="tag">Customer Success</span>
+      <span class="tag">Comunicação Clara</span>
+      <span class="tag">Resolução de Problemas</span>
+      <span class="tag">Trabalho Remoto (Home Office)</span>
+      <span class="tag">Ferramentas Digitais</span>
+      <span class="tag">Gestão de Metas</span>
+    </div>
+  </section>
+
+  <!-- FORMAÇÃO -->
+  <section class="section" aria-labelledby="edu-label">
+    <p class="section-label" id="edu-label">Formação &amp; Cursos</p>
+
+    <div class="card">
+      <p class="card-title">Desenvolvedor Full Stack</p>
+      <p class="card-sub">StackX · mais de 360 horas</p>
+      <span class="card-badge">Conclusão prevista em 2026</span>
+    </div>
+
+    <div class="card">
+      <p class="card-title">Ensino Médio Completo</p>
+      <p class="card-sub">Dom Bosco · 2011 – 2013</p>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="section" aria-labelledby="diff-label">
+    <p class="section-label" id="diff-label">O que agrego digitalmente</p>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+
+      <div class="card">
+        <p class="card-title">🌐 Inglês Avançado</p>
+        <p class="card-sub">Atendo clientes e parceiros internacionais sem barreiras — diferencial direto para empresas com operação global ou produtos SaaS.</p>
+      </div>
+
+      <div class="card">
+        <p class="card-title">⚡ Adaptação Rápida</p>
+        <p class="card-sub">Aprendo novos sistemas com autonomia. CRM, helpdesk, ERP — se a empresa usa, eu aprendo. Sem precisar de mão na mão.</p>
+      </div>
+
+      <div class="card">
+        <p class="card-title">💻 Visão Técnica</p>
+        <p class="card-sub">Formação em desenvolvimento Full Stack me dá vocabulário técnico para entender o produto e comunicar com times de tecnologia.</p>
+      </div>
+
+      <div class="card">
+        <p class="card-title">🏠 100% Remoto</p>
+        <p class="card-sub">Infraestrutura e rotina já adaptadas para home office. Comunicação assíncrona, organização própria e entrega sem supervisão constante.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>Daniel Andreis · Joinville, SC · <a href="mailto:daniel.andreis009@gmail.com" style="color:var(--accent);text-decoration:none;">daniel.andreis009@gmail.com</a></p>
+  </footer>
+
+</main>
+</body>
+</html>
